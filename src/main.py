@@ -17,6 +17,14 @@ def read_input(path):
     return k, reqs
 
 
+def print_menu():
+    print("\nCache Policy Menu")
+    print("1. FIFO")
+    print("2. LRU")
+    print("3. OPTFF")
+    print("4. Exit")
+
+
 def main():
     if len(sys.argv) != 2:
         print("Input: python3 main.py <inputfile>")
@@ -24,13 +32,21 @@ def main():
 
     k, reqs = read_input(sys.argv[1])
 
-    fifo = run_fifo(k, reqs)
-    lru = run_lru(k, reqs)
-    optff = run_optff(k, reqs)
+    while True:
+        print_menu()
+        choice = input("Select an option (1-4): ").strip()
 
-    print(f"FIFO  : {fifo}")
-    print(f"LRU   : {lru}")
-    print(f"OPTFF : {optff}")
+        if choice == "1":
+            print(f"FIFO  : {run_fifo(k, reqs)}")
+        elif choice == "2":
+            print(f"LRU   : {run_lru(k, reqs)}")
+        elif choice == "3":
+            print(f"OPTFF : {run_optff(k, reqs)}")
+        elif choice == "4":
+            print("Exiting program.")
+            break
+        else:
+            print("Invalid option. Please choose 1, 2, 3, or 4.")
 
 
 if __name__ == "__main__":
