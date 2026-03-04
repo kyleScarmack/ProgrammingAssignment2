@@ -1,5 +1,6 @@
 from collections import deque
 
+
 def run_fifo(k, reqs):
     # k = cache capacity (k >= 1)
     # reqs = sequence of (m) requests (r_1, r_2,.., r_m)
