@@ -1,6 +1,7 @@
 import sys
 
 from fifo import run_fifo
+from lru import run_lru
 
 
 def read_input(path):
@@ -23,8 +24,10 @@ def main():
     k, reqs = read_input(sys.argv[1])
 
     fifo = run_fifo(k, reqs)
+    lru = run_lru(k, reqs)
 
     print(f"FIFO  : {fifo}")
+    print(f"LRU   : {lru}")
 
 
 if __name__ == "__main__":
