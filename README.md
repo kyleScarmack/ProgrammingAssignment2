@@ -11,6 +11,7 @@ Programming Assignment 2 implements and compares three cache eviction policies: 
 - `src/main.py` - Program entry point. Reads input file and runs implemented policies.
 - `src/fifo.py` - FIFO cache simulation.
 - `src/lru.py` - LRU cache simulation.
+- `src/optff.py` - OPTFF cache simulation.
 - `data/inputs/example.in` - Example input file.
 - `data/outputs/example.out` - Expected output for `example.in`.
 
@@ -33,9 +34,8 @@ Current implementation output format:
 ```
 FIFO  : <number_of_misses>
 LRU   : <number_of_misses>
+OPTFF : <number_of_misses>
 ```
-
-`OPTFF` will be added in a later commit.
 
 ## How to Run
 ### Requirements / Build
@@ -65,6 +65,7 @@ Output:
 ```
 FIFO  : 8
 LRU   : 6
+OPTFF : 5
 ```
 
 ## Assumptions
