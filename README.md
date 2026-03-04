@@ -87,5 +87,72 @@ TODO
 ### Question 2
 TODO
 
-### Question 3
-TODO
+### Question 3: Prove OPTFF is Optimal
+
+#### Theorem: FF produces an optimal eviction schedule.
+
+This proof follows the optimal caching proof presented in the course lecture slides [1].
+
+#### Setup
+Fix a request sequence r_1, ..., r_m and cache size k.
+
+Let S_FF be the eviction schedule produced by FF/OPTFF (Belady’s Farthest-in-Future algorithm).
+
+Let A be any offline algorithm, and let S denote the eviction schedule produced by A on this fixed request sequence.
+
+Consider an optimal schedule S (minimum possible misses) that agrees with S_FF for the maximum number of initial steps. Let j be the number of steps for which S and S_FF agree. We will show there exists a schedule S′ that agrees with S_FF for the first j+1 steps and incurs no more misses than S. This contradicts maximality of j, so S must agree with S_FF everywhere, meaning FF/OPTFF is optimal.
+
+#### Proof
+Proof by induction on the number of steps j.
+
+The proof follows directly from the following invariant.
+
+#### Invariant
+Construct S′ so that:
+1. S′ agrees with S_FF through the first j+1 steps.
+2. S′ incurs no more misses than S.
+
+Let the (j+1)-st request be to item d. Since S and S_FF agree through the first j steps, they have the same cache contents at this point.
+
+#### Case 1: d is in the cache
+No eviction is necessary, so we can set S′ = S.  
+Thus S′ = S satisfies the invariant.
+
+#### Case 2: d is not in the cache and S and S_FF evict the same item
+Again we set S′ = S.  
+Thus S′ = S satisfies the invariant.
+
+#### Case 3: d is not in the cache; S_FF evicts e and S evicts f ≠ e
+We begin construction of S′ from S by evicting e instead of f. Now S′ agrees with S_FF for the first j+1 steps. We show that having item f in cache is no worse than having item e in cache.
+
+Let S′ behave the same as S until S′ is forced to take a different action (because either S evicts e, or because either e or f is requested).
+
+Let j′ be the first step after j+1 that S′ must take a different action from S. Let g denote the item requested at step j′.
+
+##### Case 3a: g = e
+This cannot happen with FF since there must be a request for f before e, because FF evicted e as the item whose next request occurs farthest in the future.
+
+##### Case 3b: g = f
+Item f cannot be in the cache of S. Let e′ be the item that S evicts at this step.
+
+- If e′ = e, then S′ accesses f from cache and now S and S′ have the same cache.
+- If e′ ≠ e, we make S′ evict e′ and bring e into the cache. Now S and S′ have the same cache.
+
+We then let S′ behave exactly like S for the remaining requests. As noted in the slides, S′ may no longer be reduced, but it can be transformed into a reduced schedule that still agrees with FF through the first j+1 steps.
+
+##### Case 3c: g ≠ e,f and S evicts e
+Make S′ evict f. Now S and S′ have the same cache, and we let S′ behave exactly like S for the remaining requests.
+
+#### Conclusion
+In all cases we constructed a schedule S′ that satisfies the invariant: it agrees with S_FF for the first j+1 steps and incurs no more misses than S.
+
+This contradicts the choice of S as an optimal schedule that agreed with S_FF for the maximum number of initial steps. Therefore S must agree with S_FF everywhere, and hence FF/OPTFF is an optimal offline eviction schedule.
+
+Finally, since A was arbitrary and S was the schedule produced by A, we conclude:
+
+misses(OPTFF) ≤ misses(A)
+
+for any offline algorithm A on any fixed request sequence.
+
+## References
+[1] COP4533 Lecture Slides, "Chapter-4-2026: Greedy Algorithms I".
