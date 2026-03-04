@@ -8,7 +8,7 @@ Programming Assignment 2 implements and compares three cache eviction policies: 
 - Student 2: Kyle Scarmack - UFID: 20823723
 
 ## Repository Structure
-- `src/main.py` - Program entry point. Reads input file and runs implemented policies.
+- `src/main.py` - Program entry point with a menu to run FIFO, LRU, or OPTFF.
 - `src/fifo.py` - FIFO cache simulation.
 - `src/lru.py` - LRU cache simulation.
 - `src/optff.py` - OPTFF cache simulation.
@@ -29,13 +29,15 @@ r1 r2 r3 ... rm
 - `r1 ... rm` = sequence of integer request IDs
 
 ### Output
-Current implementation output format:
+Current implementation is menu-driven. After choosing a policy, the program prints:
 
 ```
 FIFO  : <number_of_misses>
 LRU   : <number_of_misses>
 OPTFF : <number_of_misses>
 ```
+
+Only the selected policy line is printed for each menu choice.
 
 ## How to Run
 ### Requirements / Build
@@ -48,6 +50,12 @@ Run from the repository root:
 ```
 python src/main.py data/inputs/example.in
 ```
+
+Then use the menu:
+- `1` for FIFO
+- `2` for LRU
+- `3` for OPTFF
+- `4` to exit
 
 ## Example Files
 - Example input: `data/inputs/example.in`
@@ -69,7 +77,10 @@ OPTFF : 5
 ```
 
 ## Assumptions
-TODO
+- The input file follows the required format: `k m` on the first line and exactly `m` integer requests after it.
+- `k >= 1`.
+- Request IDs are integers.
+- The program keeps showing the menu until option `4` is selected.
 
 ## How to Reproduce Outputs
 Run:
@@ -78,7 +89,8 @@ Run:
 python src/main.py data/inputs/example.in
 ```
 
-Compare your terminal output to `data/outputs/example.out`.
+Then choose `1`, `2`, and `3` (in any order) to print each policy result, and choose `4` to exit.
+Compare the printed results to `data/outputs/example.out`.
 
 ## Written Component
 ### Question 1
