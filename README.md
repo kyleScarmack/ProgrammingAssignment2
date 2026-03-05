@@ -120,9 +120,9 @@ Matching output files:
 
 #### Brief Comment
 - Does OPTFF have the fewest misses?
-  - TODO
+  - Yes, OPTFF has the fewest misses in all three test files. This is expected because OPTFF is the optimal offline cache eviction algorithm.
 - How does FIFO compare to LRU?
-  - TODO
+  - FIFO performed worse than LRU on q1_case1.in, while FIFO and LRU produced the same number of misses on q1_case2.in and q1_case3.in. Thus, LRU was never worse than FIFO in these tests, but it only outperformed FIFO on one of the three request sequences. This result makes sense because LRU keeps recently used items in the cache, which are often needed again soon. FIFO, on the other hand, may remove an item just because it is the oldest one in the cache, even if it will be used again shortly.
 
 ### Question 2: Bad Sequence for LRU (k = 3)
 
