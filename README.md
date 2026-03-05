@@ -96,7 +96,6 @@ Compare the printed results to `data/outputs/example.out`.
 ### Question 1
 TODO
 
-### Question 2
 ### Question 2: Bad Sequence for LRU (k = 3)
 
 #### Claim
