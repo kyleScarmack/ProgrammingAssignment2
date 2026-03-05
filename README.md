@@ -97,7 +97,35 @@ Compare the printed results to `data/outputs/example.out`.
 TODO
 
 ### Question 2
-TODO
+### Question 2: Bad Sequence for LRU (k = 3)
+
+#### Claim
+There exists a request sequence for cache size `k = 3` on which OPTFF incurs strictly fewer misses than LRU.
+
+This construction follows the cache-eviction comparisons discussed in the course lecture slides [1].
+
+#### Setup
+Let:
+
+- Cache size `k = 3`
+- Request sequence:
+
+`1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5`
+
+#### Computation
+Simulating both policies on this fixed sequence gives:
+
+- `LRU` misses: `10`
+- `OPTFF` misses: `7`
+
+To see why LRU performs worse, once `4` and `5` appear, LRU repeatedly evicts items that will be needed sooner than the item OPTFF chooses to evict. OPTFF uses future knowledge, so it evicts the page whose next use is farthest in the future and avoids several near-term misses.
+
+#### Conclusion
+For this `k = 3` sequence:
+
+`misses(OPTFF) = 7 < 10 = misses(LRU)`
+
+Therefore, a bad sequence for LRU exists where OPTFF incurs strictly fewer misses.
 
 ### Question 3: Prove OPTFF is Optimal
 
@@ -167,4 +195,4 @@ misses(OPTFF) ≤ misses(A)
 for any offline algorithm A on any fixed request sequence.
 
 ## References
-[1] COP4533 Lecture Slides, "Chapter-4-2026: Greedy Algorithms I".
+[1] COP4533 Lecture Slides, "Chapter-4-2026.pdf" (Greedy Algorithms I).
