@@ -93,8 +93,36 @@ Then choose `1`, `2`, and `3` (in any order) to print each policy result, and ch
 Compare the printed results to `data/outputs/example.out`.
 
 ## Written Component
-### Question 1
-TODO
+### Question 1: Empirical Comparison
+
+#### Setup
+For Question 1, we used three nontrivial input files, each with at least 50 requests:
+
+- `data/inputs/q1_case1.in` (`k = 3`, `m = 60`)
+- `data/inputs/q1_case2.in` (`k = 4`, `m = 64`)
+- `data/inputs/q1_case3.in` (`k = 5`, `m = 70`)
+
+This section is split 50/50:
+- First half (completed here): input design + computed miss counts table.
+- Second half (partner): interpretation and comparison commentary.
+
+#### Results
+| Input File | k | m | FIFO | LRU | OPTFF |
+| --- | --- | --- | --- | --- | --- |
+| `q1_case1.in` | 3 | 60 | 56 | 54 | 36 |
+| `q1_case2.in` | 4 | 64 | 16 | 16 | 13 |
+| `q1_case3.in` | 5 | 70 | 41 | 41 | 27 |
+
+Matching output files:
+- `data/outputs/q1_case1.out`
+- `data/outputs/q1_case2.out`
+- `data/outputs/q1_case3.out`
+
+#### Brief Comment
+- Does OPTFF have the fewest misses?
+  - TODO
+- How does FIFO compare to LRU?
+  - TODO
 
 ### Question 2: Bad Sequence for LRU (k = 3)
 
